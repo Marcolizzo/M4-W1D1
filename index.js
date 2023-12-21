@@ -76,39 +76,25 @@ Angolo piatto: 180° --> ritorna "piatto" */
 
 const typeOfAngle = function (angle) {
 
-    if (angle<90) {
-        console.log("acuto");
-    } else if (angle>90 && angle<180) {
-        console.log("ottuso");
-    } else if (angle===90) {
-        console.log("retto");
-    }
-    else if (angle===180) {
-        console.log("piatto");
-    } else {
-        console.log("Nessun tipo di Angolo trovato");
+    switch (true) {
+        case (angle < 90):
+            console.log("acuto");
+            break;
+        case (angle > 90 && angle < 180):
+            console.log("ottuso");
+            break;
+        case (angle === 90):
+            console.log("retto");
+            break;
+        case (angle === 180):
+            console.log("piatto");
+            break;
+        default:
+            console.log("Nessun tipo di Angolo trovato");
+            break;
     }
 }
-
 typeOfAngle(90)
-
-// switch (angle) {
-    //     case (angle < 90):
-    //         console.log("acuto");
-    //         break;
-    //     case (angle > 90 && angle < 180):
-    //         console.log("ottuso");
-    //         break;
-    //     case (angle === 90):
-    //         console.log("retto");
-    //         break;
-    //     case (angle === 180):
-    //         console.log("piatto");
-    //         break;
-    //     default:
-    //         console.log("Nessun tipo di Angolo trovato");
-    //         break;
-    // }
 
 /* ESERCIZIO 8: Crea una funzione che crei un acronimo a partire da una frase. Es. "Fabbrica Italiana Automobili
 Torino" deve ritornare "FIAT".
@@ -116,7 +102,7 @@ bil• */
 const creaAcronimo = function (frase) {
     let arrayFrase = frase.split(" ")
     let iniziali = []
-    for (i=0; i<arrayFrase.length; i++) {
+    for (i = 0; i < arrayFrase.length; i++) {
         iniziali.push(arrayFrase[i].charAt(0))
     }
     let acronimo = iniziali.join("")
@@ -124,15 +110,68 @@ const creaAcronimo = function (frase) {
 }
 creaAcronimo("Fabbrica italiana automobili torino")
 
-/* Esercizi extra
-NOTA: tutti gli esercizi devono essere svolti usando le funzioni
-1. Partendo da una stringa (passata come parametro), ritorna il carattere più usato nella stringa stessa.
-2. Controlla che due stringhe passate come parametri siano gli anagrammi l’una dell’altra. Ignora punteggiatura e spazi e ricordate di rendere la stringa tutta in minuscolo. Se le due parole sono anagrammi, ritorna `true`, altrimenti ritorna `false`.
-3. Partendo da una lista di possibili anagrammi e da una parola (entrambi passati come parametri), ritorna un nuovo array contenente tutti gli anagrammi corretti della parola data.
-Per esempio, partendo da “cartine” e [”carenti”, “incerta”, “espatrio”], il valore ritornato deve essere [”carenti”, “incerta”].
-4. Partendo da una stringa passata come parametro, ritorna `true` se la stringa è palindroma o `false` se non lo è.
-5. Partendo da un numero intero (dai parametri) ritorna un numero che contenga le stesse cifre, ma in ordine contrario. Es. 189 ⇒ 981
-6. Scrivi una funzione che accetti un numero positivo X come parametro. La funzione dovrebbe stampare a console una “scala” creata con il carattere “#” e avente X scalini.
+// Esercizi extra
+// NOTA: tutti gli esercizi devono essere svolti usando le funzioni
+/* 1. Partendo da una stringa (passata come parametro), ritorna il carattere più usato nella stringa stessa.*/
+const mostUsed = function (stringa) {
+    let charMap = {}
+    let maxChar = ""
+    let maxCount = 0
+    for (let char of stringa) {
+        charMap[char] = charMap[char] + 1 || 1
+    }
+
+    for (let char in charMap) {
+        if (charMap[char] > maxCount) {
+            maxCount = charMap[char]
+            maxChar = char
+        }
+    }
+    console.log(maxChar);
+}
+mostUsed("Trentatrè tigri contro trentatrè tigri")
+
+
+/*2. Controlla che due stringhe passate come parametri siano gli anagrammi l’una dell’altra.
+Ignora punteggiatura e spazi e ricordate di rendere la stringa tutta in minuscolo.
+Se le due parole sono anagrammi, ritorna `true`, altrimenti ritorna `false`.*/
+const areAnagram = function (stringa1, stringa2) {
+    let noPunctuation1 = stringa1.replace(/[^\w\s]|_/g, '') //elimino tutti i caratteri che non sono lettere
+    let noPunctuation2 = stringa2.replace(/[^\w\s]|_/g, '') //elimino tutti i caratteri che non sono lettere
+    let noSpace1 = noPunctuation1.replace(/\s+/g, "") //elimino tutti gli spazi vuoti
+    let noSpace2 = noPunctuation2.replace(/\s+/g, "") //elimino tutti gli spazi vuoti
+    let newStringa1 = noSpace1
+    let newStringa2 = noSpace2
+
+    if (newStringa1.length != newStringa2.length) {
+        console.log("lunghezza diversa")
+    } else {
+
+        let split1 = newStringa1.split("")
+        let split2 = newStringa2.split("")
+        split1.sort()
+        split2.sort()
+console.log(sort1);
+        // for (let i = 0; i > newStringa1.length; i++) {
+        //     if (split1[i].toLowerCase() != split2[i].toLowerCase()) {
+        //         console.log("False")
+        //     } else {
+        //         console.log("True")
+        //     }
+        // }
+    }
+}
+areAnagram("Marco", "Croma")
+
+
+/*3. Partendo da una lista di possibili anagrammi e da una parola (entrambi passati come parametri),
+ritorna un nuovo array contenente tutti gli anagrammi corretti della parola data.
+Per esempio, partendo da “cartine” e [”carenti”, “incerta”, “espatrio”], il valore ritornato deve essere [”carenti”, “incerta”].*/
+/*4. Partendo da una stringa passata come parametro, ritorna `true` se la stringa è palindroma o `false` se non lo è.*/
+/*5. Partendo da un numero intero (dai parametri) ritorna un numero che contenga le stesse cifre, 
+ma in ordine contrario. Es. 189 ⇒ 981*/
+/*6. Scrivi una funzione che accetti un numero positivo X come parametro.
+La funzione dovrebbe stampare a console una “scala” creata con il carattere “#” e avente X scalini.
 Es.
 X = 2
 '# '
@@ -141,17 +180,20 @@ X = 3
 '# '
 '## '
 '###'
-7. Crea una funzione che, data una stringa come parametro, ritorni la stessa stringa, ma al contrario. Es. “Ciao” ****⇒ “oaiC”
-8. Crea una funzione che accetti un array e un numero Y come parametro. Dividi l’array in sotto-array aventi lunghezza Y.
+*/
+/*7. Crea una funzione che, data una stringa come parametro, ritorni la stessa stringa, ma al contrario. Es. “Ciao” ****⇒ “oaiC” */
+/*8. Crea una funzione che accetti un array e un numero Y come parametro. Dividi l’array in sotto-array aventi lunghezza Y.
 Es. array: [1, 2, 3, 4], y: 2 ⇒ [[ 1, 2], [3, 4]]
-array: [1, 2, 3, 4, 5], y: 4 ⇒ [[ 1, 2, 3, 4], [5]]
-9. Scrivi una funzione che accetti un numero positivo X come parametro. La funzione dovrebbe stampare a console una “piramide” create con il carattere “#” e avente X strati.
+array: [1, 2, 3, 4, 5], y: 4 ⇒ [[ 1, 2, 3, 4], [5]] */
+/*9. Scrivi una funzione che accetti un numero positivo X come parametro.
+La funzione dovrebbe stampare a console una “piramide” create con il carattere “#” e avente X strati.
 Es.
 X = 3
 ' # '
 ' ### '
 '#####'
-10. Scrivi una funzione che accetti un intero N e ritorni una matrice a spirale NxN:
+*/
+/*10. Scrivi una funzione che accetti un intero N e ritorni una matrice a spirale NxN:
 Es. N = 2
 [[1, 2],[4, 3]]
 N = 3
