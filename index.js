@@ -144,32 +144,173 @@ const areAnagram = function (stringa1, stringa2) {
     let newStringa2 = noSpace2
 
     if (newStringa1.length != newStringa2.length) {
-        console.log("lunghezza diversa")
+        console.log("False")
     } else {
+        let sortString1 = newStringa1.toLowerCase().split("").sort().join("")
+        let sortString2 = newStringa2.toLowerCase().split("").sort().join("")
 
-        let split1 = newStringa1.split("")
-        let split2 = newStringa2.split("")
-        split1.sort()
-        split2.sort()
-console.log(sort1);
-        // for (let i = 0; i > newStringa1.length; i++) {
-        //     if (split1[i].toLowerCase() != split2[i].toLowerCase()) {
-        //         console.log("False")
-        //     } else {
-        //         console.log("True")
-        //     }
-        // }
+        if (sortString1 === sortString2) {
+            console.log("True")
+        } else {
+            console.log("False")
+        }
     }
 }
-areAnagram("Marco", "Croma")
+areAnagram("Sentito", "Insetto")
 
 
 /*3. Partendo da una lista di possibili anagrammi e da una parola (entrambi passati come parametri),
 ritorna un nuovo array contenente tutti gli anagrammi corretti della parola data.
 Per esempio, partendo da “cartine” e [”carenti”, “incerta”, “espatrio”], il valore ritornato deve essere [”carenti”, “incerta”].*/
+const arrayAnagrammi = [
+    "apertosi",
+    "apriste",
+    "arpiste",
+    "arconti",
+    "aspro",
+    "avresti",
+    "cantori",
+    "carenti",
+    "cartine",
+    "cartoni",
+    "castrino",
+    "castroni",
+    "cernita",
+    "centrai",
+    "cintare",
+    "contarsi",
+    "contrai",
+    "cortina",
+    "cornista",
+    "cronista",
+    "cretina",
+    "creanti",
+    "crenati",
+    "espatri",
+    "espatrio",
+    "estirpa",
+    "estinto",
+    "incarto",
+    "incastro",
+    "incerta",
+    "incrosta",
+    "insetto",
+    "intesto",
+    "nacrite",
+    "natrice",
+    "notiste",
+    "nostro",
+    "operista",
+    "operasti",
+    "ospitare",
+    "parso",
+    "paresti",
+    "paresti",
+    "pesatori",
+    "pesarti",
+    "piastre",
+    "pietrosa",
+    "posareti",
+    "prestai",
+    "pratesi",
+    "prosa",
+    "proteasi",
+    "rapiste",
+    "recanti",
+    "recinta",
+    "reperto",
+    "riposta",
+    "riposate",
+    "ricanto",
+    "riconta",
+    "ripesato",
+    "ristori",
+    "rivesta",
+    "saporite",
+    "saperti",
+    "scontrai",
+    "scornati",
+    "scartino",
+    "scarnito",
+    "sentina",
+    "sentito",
+    "snostra",
+    "sonetti",
+    "sparo",
+    "sparite",
+    "spirti",
+    "spirate",
+    "spora",
+    "sporai",
+    "stiperà",
+    "sterpai",
+    "stipare",
+    "svitare",
+    "sviterà",
+    "testino",
+    "testoni",
+    "tranciò",
+    "trancio",
+    "trascino",
+    "trincea",
+    "verista",
+    "versati",
+    "viraste",
+    "visione",
+];
+
+const soloAnagrammi = function (stringa, array) {
+    let sameLength = []
+    let areAnagram = []
+    for (let i = 0; i < arrayAnagrammi.length; i++) {
+        if (stringa.length === arrayAnagrammi[i].length) {
+            sameLength.push(arrayAnagrammi[i])
+        }
+    }
+    /* elimino i caratteri che non sono lettere, elimino gli spazi, trasformo la stringa in un array di lettere,
+    ordino le lettere in ordine alfabetico e trasformo l'array ordinato di nuovo in stringa*/
+    let newString = stringa.toLowerCase().replace(/[^\w\s]|_/g, '').replace(/\s+/g, "").split("").sort().join("")
+
+    /*per ogni parola, la salvo in una variabile, poi la ordino e controllo */
+    for (let i=0; i<sameLength.length; i++) {
+       let word = ""
+       let newWord = ""
+       word = sameLength[i]
+       newWord = word.toLowerCase().split("").sort().join("")
+       if (newWord === newString) {
+        areAnagram.push(word)
+       }
+    }
+
+    console.log(areAnagram);
+}
+soloAnagrammi("Cartine", arrayAnagrammi)
+
+
 /*4. Partendo da una stringa passata come parametro, ritorna `true` se la stringa è palindroma o `false` se non lo è.*/
+const isPalindrom = function (stringa) {
+    let newString = stringa.toLowerCase().replace(/[^\w\s]|_/g, '').replace(/\s+/g, "")
+    let reverseString = newString.split("").reverse().join("")
+    if (newString === reverseString) {
+        console.log("True")
+    } else {
+        console.log("False")
+    }
+    
+}
+isPalindrom("I topi non avevano nipoti.")
+
+
 /*5. Partendo da un numero intero (dai parametri) ritorna un numero che contenga le stesse cifre, 
 ma in ordine contrario. Es. 189 ⇒ 981*/
+const numberReverse = function (number) {
+let reverseNumber = parseInt(number.toString().split("").reverse().join(""))
+
+console.log(reverseNumber);
+}
+numberReverse(189)
+
+
 /*6. Scrivi una funzione che accetti un numero positivo X come parametro.
 La funzione dovrebbe stampare a console una “scala” creata con il carattere “#” e avente X scalini.
 Es.
@@ -181,7 +322,15 @@ X = 3
 '## '
 '###'
 */
+
+
 /*7. Crea una funzione che, data una stringa come parametro, ritorni la stessa stringa, ma al contrario. Es. “Ciao” ****⇒ “oaiC” */
+const reverseString = function(stringa) {
+    let stringaReverse = stringa.split("").reverse().join("")
+    console.log(stringaReverse)
+}
+reverseString("Ciao sono marco")
+
 /*8. Crea una funzione che accetti un array e un numero Y come parametro. Dividi l’array in sotto-array aventi lunghezza Y.
 Es. array: [1, 2, 3, 4], y: 2 ⇒ [[ 1, 2], [3, 4]]
 array: [1, 2, 3, 4, 5], y: 4 ⇒ [[ 1, 2, 3, 4], [5]] */
