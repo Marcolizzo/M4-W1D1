@@ -323,6 +323,18 @@ X = 3
 '###'
 */
 
+const scala = function(number) {
+    if (number<0 || !Number.isInteger(number)) {
+        console.log("Inserisci un numero positivo!")
+    } else {
+        for (let i=1; i<=number; i++) {
+            const simbolo = "#".repeat(i);
+            console.log(simbolo)
+        }
+    }
+}
+scala(10)
+
 
 /*7. Crea una funzione che, data una stringa come parametro, ritorni la stessa stringa, ma al contrario. Es. “Ciao” ****⇒ “oaiC” */
 const reverseString = function(stringa) {
@@ -334,6 +346,24 @@ reverseString("Ciao sono marco")
 /*8. Crea una funzione che accetti un array e un numero Y come parametro. Dividi l’array in sotto-array aventi lunghezza Y.
 Es. array: [1, 2, 3, 4], y: 2 ⇒ [[ 1, 2], [3, 4]]
 array: [1, 2, 3, 4, 5], y: 4 ⇒ [[ 1, 2, 3, 4], [5]] */
+const numeri = [1,2,3,4,5,6,7,8,9]
+const dividiArray = function (array, numero){
+    if(!Array.isArray(array)){
+        console.log("Il primo parametro deve essere un array!")
+        return
+    }
+    if (numero<0 || !Number.isInteger(numero)) {
+        console.log("Il secondo parametro deve essere un numero positivo!")
+        return
+    }
+    const arrayDiviso = []
+    for (let i=0; i<array.length; i+=numero){
+    arrayDiviso.push(array.slice(i, i+numero))
+    }
+    console.log(arrayDiviso)
+}
+dividiArray(numeri, 3)
+
 /*9. Scrivi una funzione che accetti un numero positivo X come parametro.
 La funzione dovrebbe stampare a console una “piramide” create con il carattere “#” e avente X strati.
 Es.
@@ -342,6 +372,20 @@ X = 3
 ' ### '
 '#####'
 */
+const piramide = function(numero){
+    if (numero<0 || !Number.isInteger(numero)) {
+        console.log("Inserisci un numero positivo!")
+        return
+    }
+    for(let i=1; i<=numero; i++){
+        const spazio = " ".repeat(numero-i)
+        const simbolo = "#".repeat(2*i-1)
+        console.log(spazio+simbolo+spazio)
+    }
+}
+piramide(10)
+
+
 /*10. Scrivi una funzione che accetti un intero N e ritorni una matrice a spirale NxN:
 Es. N = 2
 [[1, 2],[4, 3]]
